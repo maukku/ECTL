@@ -1,5 +1,6 @@
 import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { useEffect,useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
 
@@ -8,6 +9,7 @@ export default function App() {
   let value;
   let altColor;
   let url = "";
+  const [ price, setPrice ] = useState(5);
   let userName = "John";
   // Used to test color settings until API is set up and cost ranges determined
   value = Math.floor(Math.random() * 100) + 1;
@@ -30,6 +32,36 @@ export default function App() {
     axios
       .get({url})
   };
+
+  useEffect(() => {
+		const fetchData = async () => {
+			const today = new Date();
+			console.log("today" + today);
+			const yesterday = new Date();
+			yesterday.setDate(yesterday.getDate() - 1);
+			console.log("yesterday" + yesterday);
+			const responseOld = await axios.get(
+				`https://api.fingrid.fi/v1/variable/106/events/json?start_time=${yesterday.getFullYear()}-${yesterday.getMonth()+1}-${yesterday.getDate()}T${yesterday.getHours()}%3A00%3A00Z&end_time=${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}T${today.getHours()}%3A00%3A00Z`,
+				{ headers: { header1: 'x-api-key: GN8JOZSHEWacz3RErMnYA3kOaY8p3vM6a4a2FV8s' } }
+			);
+			/*const response = await axios.get(
+				`https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500`,
+			);
+			const response = fetch('https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500')
+  .then(e => console.log(e));*/
+			const data = responseOld.data;
+			console.log(responseOld);
+			if (data.length > 0) {
+				setPrice(data[data.length - 2].value);
+			}
+		};
+		const loadDummyData = () => {
+			setPrice(0);
+		};
+		fetchData();
+		//loadDummyData();
+	}, []);
+  
 
   return (
     <View style={styles.container}>
@@ -70,7 +102,15 @@ export default function App() {
       {/* <View
         style={[styles.bar, { width: value * 1.5, backgroundColor: color }]}
       /> */}
-
+<div  
+							style={{
+								backgroundColor: 'green',
+								padding: 40,
+								color: 'white'
+							}}
+						>
+							<div>Current electricity price: {price}€/MWh</div>
+						</div>	
     </View>
   );
 }
