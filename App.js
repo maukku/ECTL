@@ -13,7 +13,6 @@ const App = () => {
   let color;
   let value;
   let altColor;
-  let url1 = "https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500";
   let userName = "John";
   const [ price, setPrice ] = useState(5);
   // Used to test color settings until API is set up and cost ranges determined
@@ -46,7 +45,7 @@ const App = () => {
     var day = today.getDate();
     var hours = today.getHours();
 
-    await fetch(`https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${day}0000&periodEnd=${year}${month}${day}${hours}00`)
+    await fetch(`https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${day}${hours}00&periodEnd=${year}${month}${day}${hours}00`)
     .then((response) => response.text())
     .then((textResponse) => {
       let jsonObj = parser.parse(textResponse); 
@@ -56,25 +55,25 @@ const App = () => {
 
   useEffect(() => {
 		const fetchData = async () => {
-			const today = new Date()
-			console.log("today" + today)
-			const yesterday = new Date()
-			yesterday.setDate(yesterday.getDate() - 1)
-			console.log("yesterday" + yesterday)
-			const responseOld = await axios.get(
-				`https://api.fingrid.fi/v1/variable/106/events/json?start_time=${yesterday.getFullYear()}-${yesterday.getMonth()+1}-${yesterday.getDate()}T${yesterday.getHours()}%3A00%3A00Z&end_time=${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}T${today.getHours()}%3A00%3A00Z`,
-				{ headers: { header1: 'x-api-key: GN8JOZSHEWacz3RErMnYA3kOaY8p3vM6a4a2FV8s' } }
-			);
-			/*const response = await axios.get(
-				`https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500`,
-			);
-			const response = fetch('https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500')
-  .then(e => console.log(e));*/
-			const data = responseOld.data
-			console.log(responseOld.data)
-			if (data.length > 0) {
-				setPrice(data[data.length - 2].value);
-			}
+	// 		const today = new Date()
+	// 		console.log("today" + today)
+	// 		const yesterday = new Date()
+	// 		yesterday.setDate(yesterday.getDate() - 1)
+	// 		console.log("yesterday" + yesterday)
+	// 		const responseOld = await axios.get(
+	// 			`https://api.fingrid.fi/v1/variable/106/events/json?start_time=${yesterday.getFullYear()}-${yesterday.getMonth()+1}-${yesterday.getDate()}T${yesterday.getHours()}%3A00%3A00Z&end_time=${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}T${today.getHours()}%3A00%3A00Z`,
+	// 			{ headers: { header1: 'x-api-key: GN8JOZSHEWacz3RErMnYA3kOaY8p3vM6a4a2FV8s' } }
+	// 		);
+	// 		/*const response = await axios.get(
+	// 			`https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500`,
+	// 		);
+	// 		const response = fetch('https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=202210110600&periodEnd=202210121500')
+  // .then(e => console.log(e));*/
+	// 		const data = responseOld.data
+	// 		console.log(responseOld.data)
+	// 		if (data.length > 0) {
+	// 			setPrice(data[data.length - 2].value);
+	// 		}
 		};
   }, []) 
 
