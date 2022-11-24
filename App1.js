@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { useEffect,useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
+import Header from './components/Header';
 
 export default function App() {
   let color;
@@ -65,6 +66,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+<Header></Header>
       <StatusBar style="auto" />
       <View>
         {/* Display data */}
