@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
@@ -19,8 +20,8 @@ import CircleIndicator from "./components/CircleIndicator";
 import { WelcomeText } from "./components/WelcomeText";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const parser = require("fast-xml-parser");
-
+import { XMLParser } from 'fast-xml-parser';
+const parser = new XMLParser();
 const App = () => {
   const [currentDate, setCurrentDate] = useState("");
 
@@ -28,6 +29,8 @@ const App = () => {
   let value;
   let altColor;
   const [price, setPrice] = useState(5);
+  const [priceArray, setPriceArray] = useState([1.5]);
+  let electricityPrices = new Array(24);
   // Used to test color settings until API is set up and cost ranges determined
   value = Math.floor(Math.random() * 100) + 1;
 
@@ -48,7 +51,7 @@ const App = () => {
     const options = {
       ignoreAttributes: false,
     };
-    const parser = new XMLParser(options);
+    const parser = new XMLParser(options);    
 
     const today = new Date();
     var year = today.getFullYear();
@@ -57,13 +60,21 @@ const App = () => {
     var hours = today.getHours();
 
     await fetch(
-      `https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${day}${hours}00&periodEnd=${year}${month}${day}${hours}00`
+      `https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${day-1}${hours}00&periodEnd=${year}${month}${day}${hours}00`
     )
       .then((response) => response.text())
       .then((textResponse) => {
-        let jsonObj = parser.parse(textResponse);
-        console.log("==============\n", jsonObj);
-      });
+        let initialResponse = parser.parse(textResponse);
+        let jsonStringOfCurrentDayArray = JSON.stringify(initialResponse.Publication_MarketDocument.TimeSeries[1].Period.Point);
+        const regexToReplacePriceAmount = /price.amount/gi;
+        jsonStringOfCurrentDayArray = jsonStringOfCurrentDayArray.replace(regexToReplacePriceAmount,"amount");
+        let newJsonObject = JSON.parse(jsonStringOfCurrentDayArray);
+        
+         for(let i = 0; i < newJsonObject.length; i++) {
+          electricityPrices[i] = newJsonObject[i].amount;
+        } 
+        setPriceArray(electricityPrices);
+      });      
   };
 
   useEffect(() => {
@@ -98,6 +109,8 @@ const App = () => {
         <WelcomeText />
       </View>
       <Text style={styles.textStyle}>{currentDate}</Text>
+      <Button title="Refresh" onPress={() => getData()}> </Button>
+      <Text style={styles.textStyle}>{priceArray}</Text>
     </SafeAreaView>
   );
 };
