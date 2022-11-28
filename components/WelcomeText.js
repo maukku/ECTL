@@ -13,5 +13,6 @@ export const WelcomeText = ({ cost, percentage }) => {
 const styles = StyleSheet.create({
   container: {
     width: 175,
+
   },
 });
