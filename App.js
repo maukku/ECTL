@@ -30,7 +30,7 @@ const App = () => {
   let altColor;
   const [price, setPrice] = useState(5);
   const [priceArray, setPriceArray] = useState([1.5]);
-  let electricityPrices = new Array(24);
+  let electricityPrices = new Array(12);
   // Used to test color settings until API is set up and cost ranges determined
   value = Math.floor(Math.random() * 100) + 1;
 
@@ -77,10 +77,11 @@ const App = () => {
         );
         let newJsonObject = JSON.parse(jsonStringOfCurrentDayArray);
 
-        for (let i = 0; i < newJsonObject.length; i++) {
+        for (let i = 0; i < 12; i++) {
           electricityPrices[i] = newJsonObject[i].amount;
         }
-        setPriceArray(electricityPrices);
+        setPriceArray(electricityPrices);    
+
       });
   };
 
@@ -95,7 +96,7 @@ const App = () => {
         <CircleIndicator altColor={altColor} value={value} color={color} />
         <WelcomeText />
       </View>
-      <Chart />
+      <Chart priceArray={priceArray} />
       <Text style={styles.textStyle}>{currentDate}</Text>
 
       <Text style={styles.textStyle}>

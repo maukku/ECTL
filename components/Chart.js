@@ -10,14 +10,7 @@ export default function Chart({ priceArray }) {
           labels: ["6:00 AM", "12:00 PM", "6:00 PM", "12:00 AM"],
           datasets: [
             {
-              data: [
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-              ],
+              data: priceArray,
             },
           ],
         }}
@@ -33,12 +26,12 @@ export default function Chart({ priceArray }) {
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
-            borderRadius: 16,
+            borderRadius: 5,
           },
           propsForDots: {
-            r: "6",
+            r: "3",
             strokeWidth: "2",
-            stroke: "#11111",
+            stroke: "white",
           },
         }}
         bezier
