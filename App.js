@@ -80,8 +80,7 @@ const App = () => {
         for (let i = 0; i < 12; i++) {
           electricityPrices[i] = newJsonObject[i].amount;
         }
-        setPriceArray(electricityPrices);    
-
+        setPriceArray(electricityPrices);
       });
   };
 
@@ -96,7 +95,10 @@ const App = () => {
         <CircleIndicator altColor={altColor} value={value} color={color} />
         <WelcomeText />
       </View>
-      <Chart priceArray={priceArray} />
+      <View style={styles.chart}>
+        <Chart priceArray={priceArray} />
+      </View>
+
       <Text style={styles.textStyle}>{currentDate}</Text>
 
       <Text style={styles.textStyle}>
@@ -113,7 +115,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
-
+  chart: {
+    marginHorizontal: 10,
+    marginTop: 10,
+  },
   mainInfo: {
     flexDirection: "row",
     flexWrap: "wrap",

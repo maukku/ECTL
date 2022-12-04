@@ -4,8 +4,10 @@ import { LineChart } from "react-native-chart-kit";
 
 export default function Chart({ priceArray }) {
   return (
-    <View>
+    <View style={styles.container}>
       <LineChart
+        withInnerLines={true}
+        withOuterLines={false}
         data={{
           labels: ["6:00 AM", "12:00 PM", "6:00 PM", "12:00 AM"],
           datasets: [
@@ -14,7 +16,7 @@ export default function Chart({ priceArray }) {
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
+        width={Dimensions.get("window").width-20} // from react-native
         height={220}
         yAxisSuffix="€"
         yAxisInterval={1} // optional, defaults to 1
@@ -23,7 +25,7 @@ export default function Chart({ priceArray }) {
           backgroundGradientFrom: "#A6CEE3",
           backgroundGradientTo: "#A6CEE3",
           decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          color: (opacity = 1) => `rgba(5, 100, 150, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
             borderRadius: 5,
@@ -43,3 +45,7 @@ export default function Chart({ priceArray }) {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+  },
+});
