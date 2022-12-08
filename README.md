@@ -26,7 +26,6 @@ npm start
 👤 **Anthony Hannam**
 👤 **Tim Kunze**
 
-* Github: [@Maukku](https://github.com/Maukku)
 
 ## Show your support
 
