@@ -81,8 +81,7 @@ Takes two numbers and returns the sum.!
 | Main  | ![02A5FBf](https://user-images.githubusercontent.com/73178418/206509432-963206bf-3402-4d1a-8873-e8938bbbded6.png) #02A5FB |
 | Red (high price)| ![FF0000](https://user-images.githubusercontent.com/73178418/206509723-92998465-32ef-4634-bb67-eedf1ea8d27c.png) #FF0000 |
 | Amber (Average price) | ![FFB700](https://user-images.githubusercontent.com/73178418/206509974-befacc11-f670-437d-8771-a0dc12e70cc4.png) #FFB700 |
-| Green (low price) | ![00FF19](https://user-images.githubusercontent.com/73178418/206510191-99d3a53c-ee0e-405b-b917-965cf88b7163.png)
- #00FF19 |
+| Green (low price) | ![00FF19](https://user-images.githubusercontent.com/73178418/206510191-99d3a53c-ee0e-405b-b917-965cf88b7163.png)  #00FF19 |
 
 
 ## Features
