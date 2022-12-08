@@ -12,13 +12,13 @@ A mobile app that provides a traffic light (red - amber - green) display represe
 
 
 ## User Interface
-
-![Ambar](https://user-images.githubusercontent.com/73178418/206501722-29c8196c-e24f-497e-877b-bad9988005c3.png)
-![Green](https://user-images.githubusercontent.com/73178418/206501732-d285a2b4-64da-4e24-bfd0-0dbe61a42adb.png)
-![Red](https://user-images.githubusercontent.com/73178418/206501735-ab254bb1-d7b6-4831-9eb8-9003e69c431b.png)
+![Red](https://user-images.githubusercontent.com/73178418/206503650-9e81187a-15bd-4f4e-bc3f-4b52b7426667.png)
+![Ambar](https://user-images.githubusercontent.com/73178418/206503744-d5df2a17-cd18-4cb7-8957-8c040cdf61f3.png)
+![Green](https://user-images.githubusercontent.com/73178418/206503771-1f380c78-e66e-4bbd-b0b8-9a302b6d765f.png)
 
 
 ## Installation and Usage
+
 
 
 
