@@ -20,9 +20,11 @@ npm install
 npm start
 ```
 
-## Author
+## Authors
 
 👤 **Mauro Risso**
+👤 **Anthony Hannam**
+👤 **Tim Kunze**
 
 * Github: [@Maukku](https://github.com/Maukku)
 
