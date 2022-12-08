@@ -54,6 +54,7 @@ A mobile app that provides a traffic light (red - amber - green) display represe
   GET /api/items
 ```
 
+
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `api_key` | `string` | **Required**. Your API key |
@@ -70,16 +71,18 @@ A mobile app that provides a traffic light (red - amber - green) display represe
 
 #### add(num1, num2)
 
-Takes two numbers and returns the sum.
+Takes two numbers and returns the sum.!
+
 
 ## Color Reference
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Main  | ![#02A5FB](https://via.placeholder.com/10/02A5FBf?text=+) #02A5FB |
-| Red (high price)| ![#FF0000](https://via.placeholder.com/10/FF0000?text=+) #FF0000 |
-| Amber (Average price) | ![#FFB700](https://via.placeholder.com/10/FFB700?text=+) #FFB700 |
-| Green (low price) | ![#00FF19](https://via.placeholder.com/10/00FF19?text=+) #00FF19 |
+| Main  | ![02A5FBf](https://user-images.githubusercontent.com/73178418/206509432-963206bf-3402-4d1a-8873-e8938bbbded6.png) #02A5FB |
+| Red (high price)| ![FF0000](https://user-images.githubusercontent.com/73178418/206509723-92998465-32ef-4634-bb67-eedf1ea8d27c.png) #FF0000 |
+| Amber (Average price) | ![FFB700](https://user-images.githubusercontent.com/73178418/206509974-befacc11-f670-437d-8771-a0dc12e70cc4.png) #FFB700 |
+| Green (low price) | ![00FF19](https://user-images.githubusercontent.com/73178418/206510191-99d3a53c-ee0e-405b-b917-965cf88b7163.png)
+ #00FF19 |
 
 
 ## Features
