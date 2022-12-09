@@ -9,7 +9,7 @@ export default function Chart({ priceArray }) {
         withInnerLines={true}
         withOuterLines={false}
         data={{
-          labels: ["6:00 AM", "12:00 PM", "6:00 PM", "12:00 AM"],
+          labels: ["12 AM","6 AM", "12 PM", "6 PM", "12 AM"],
           datasets: [
             {
               data: priceArray,
