@@ -5,8 +5,8 @@ import Svg, { Path } from "react-native-svg";
 //The SVG is displaying a dark blue color, is probably because it is applying the color of the Component itself.
 export default function WavyHeader() {
   return (
-    <View style={styles.container}>
-      <View style={styles.box}>
+    <View style={styles}>
+       <View style={styles.box}>
         <Svg
           height={200}
           width={Dimensions.get("screen").width}
@@ -19,11 +19,14 @@ export default function WavyHeader() {
           />
         </Svg>
       </View>
+ 
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   box: {
     backgroundColor: "#A6CEE3",
     height: 80,
