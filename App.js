@@ -55,15 +55,13 @@ const App = () => {
 
     const today = new Date();
     var year = today.getFullYear();
-    var month = today.getMonth() + 1;
-    var day = today.getDate();
-    var hours = today.getHours();
-
-    await fetch(
-      `https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${
-        day - 1
-      }${hours}00&periodEnd=${year}${month}${day}${hours}00`
-    )
+    var month = String(today.getMonth() + 1).padStart(2, '0');
+		var sDay = String(today.getDate()-1).padStart(2, '0');
+		var eDay = String(today.getDate()).padStart(2, '0');
+    //var hours = today.getHours();
+    var uri = `https://web-api.tp.entsoe.eu/api?securityToken=55700d76-0b49-47bc-9f0e-3c4d7b4b94bf&documentType=A44&In_Domain=10YFI-1--------U&Out_Domain=10YFI-1--------U&periodStart=${year}${month}${sDay}0000&periodEnd=${year}${month}${eDay}0000`;
+		console.log(uri);
+    await fetch(uri)
       .then((response) => response.text())
       .then((textResponse) => {
         let initialResponse = parser.parse(textResponse);
