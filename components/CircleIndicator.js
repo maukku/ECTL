@@ -12,7 +12,7 @@ const PriceIndicator = ({ value, altColor, color }) => {
           style={styles.circle}
           justifyContent="center"
         >
-          <Text style={styles.buttonText}>{value}€ per kWh</Text>
+          <Text style={styles.buttonText}>{value}€ per Mwh</Text>
         </LinearGradient>
       </View>
     </View>
