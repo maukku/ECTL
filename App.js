@@ -4,7 +4,6 @@ import Chart from './components/Chart';
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import CircleIndicator from './components/CircleIndicator';
-import { WelcomeText } from './components/WelcomeText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
@@ -36,11 +35,12 @@ const App = () => {
 	};
 
 	const setLowerAndHigherLimit = (priceObjectArray) => {
-		let min = priceObjectArray[0].amount;
-		let max = priceObjectArray[0].amount;
+		let min = priceObjectArray[0].amount / 1000;
+		let max = priceObjectArray[0].amount / 1000;
 		for (let i = 1; i < priceObjectArray.length; i++) {
-			priceObjectArray[i].amount > max ? (max = priceObjectArray[i].amount) : '';
-			priceObjectArray[i].amount < min ? (min = priceObjectArray[i].amount) : '';
+			let currentPriceToCheck = priceObjectArray[i].amount / 1000;
+			currentPriceToCheck > max ? (max = currentPriceToCheck) : '';
+			currentPriceToCheck < min ? (min = currentPriceToCheck) : '';
 		}
 
 		let spanwidth = max - min;
@@ -71,10 +71,10 @@ const App = () => {
 			);
 
 			let currentDayPriceObjects = JSON.parse(replaceUneccessaryAttribute(jsonStringOfCurrentDayArray));
-      setLowerAndHigherLimit(currentDayPriceObjects);
-			setCurrentPriceValue(currentDayPriceObjects[today.getHours()].amount);
+      		setLowerAndHigherLimit(currentDayPriceObjects);
+			setCurrentPriceValue(currentDayPriceObjects[today.getHours()].amount / 1000);
 			for (let i = 0; i < currentDayPriceObjects.length; i = i + 2) {
-				electricityPrices.push(currentDayPriceObjects[i].amount);
+				electricityPrices.push(currentDayPriceObjects[i].amount / 1000);
 			}
 			setPriceArray(electricityPrices);
 		});
@@ -89,7 +89,6 @@ const App = () => {
 			<Header />
 			<View style={styles.mainInfo}>
 				<CircleIndicator altColor={altColor} value={currentPriceValue} color={color} />
-				<WelcomeText />
 			</View>
 			<View style={styles.chart}>
 				<Chart priceArray={priceArray} />
