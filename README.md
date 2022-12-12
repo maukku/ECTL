@@ -7,7 +7,7 @@
 # Welcome to Electricity Cost Traffic Lights 👋
 
 
-A mobile app that provides a traffic light (red - amber - green) display representing the current electricity cost.
+A mobile app that provides a traffic light (red - amber - green) display representing the current electricity cost in Finland.
 
 
 
@@ -48,30 +48,34 @@ A mobile app that provides a traffic light (red - amber - green) display represe
 
 ## API Reference
 
-#### Get all items
+The data used in this app is retrieved from the ENTSO-E Transparency Platform, which provides electricity data for the European market.
 
-```http
-  GET /api/items
-```
+The restful API is a synchronous interface.
+
+https://web-api.tp.entsoe.eu/api? followed by Parameter Name = Parameter Value, where each pair of parameter name and value are separated by &
+
+The user guide is available at https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
+
+#### Limits on Requests
+Maximum of 400 requests are accepted per user per minute.
+
+#### Authentication and Authorisation
+To request access to the Restful API, please register on the Transparency Platform (https://transparency.entsoe.eu/) and send an email to transparency@entsoe.eu with “Restful API access” in the subject line. Indicate the email address you entered during registration in the email body. Once access has been granted, after logging in on Transparency Platform, users will find a button to generate their token under 'My Account Settings' on TP. 
+
+#### API Key used in this app
+
+This app was developed using a devleoper's private API Key, which will be deleted by the end of 2022. Future developers must follow the above instructions to get their own API key.
 
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+#### Request Parameters
 
-#### Get item
+Document Type: A44 - Price Document
+In_Domain: 10YFI-1--------U  - Finland Region
+Out_Domain: 10YFI-1--------U  - Finland Region
 
-```http
-  GET /api/items/${id}
-```
+#### Return Data Format
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.!
+Data is returned in XML Format.
 
 
 ## Color Reference
