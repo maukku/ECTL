@@ -4,9 +4,9 @@ import React from "react";
 export default function TrafficLight({ day, lowest, average, highest }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.item1}>{lowest}</Text>
+      <Text style={styles.item1}>{highest}</Text>
       <Text style={styles.item2}>{average}</Text>
-      <Text style={styles.item3}>{highest}</Text>
+      <Text style={styles.item3}>{lowest}</Text>
       <Text style={styles.text}>{day}</Text>
     </View>
   );
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   item1: {
     padding: 4,
     borderWidth: 1,
-    borderColor: "green",
+    borderColor: "red",
     borderRadius: 15,
     textAlign: "center",
     marginBottom: 5,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   item3: {
     padding: 4,
     borderWidth: 1,
-    borderColor: "red",
+    borderColor: "green",
     borderRadius: 15,
     textAlign: "center",
   },

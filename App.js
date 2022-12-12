@@ -92,7 +92,7 @@ const App = () => {
 		<SafeAreaView style={styles.container}>
 			<Header />
 			<View style={styles.mainInfo}>
-				<CircleIndicator altColor={altColor} value={currentPriceValue} color={color} />
+				<CircleIndicator altColor={altColor} value={currentPriceValue.toFixed(3)} color={color} />
 			</View>
 			<View style={styles.chart}>
 				<Chart priceArray={priceArray} />
@@ -107,7 +107,7 @@ const App = () => {
       </Text> */}
       <View style={styles.TrafficLight}>
         <TrafficLight  lowest ={"0.10"}  average={"0.15"} highest={"0.20"}   day={"Yesterday"} />
-        <TrafficLight lowest ={"0.12"}  average={"0.17"} highest={"0.22"} day={"Today"} />
+        <TrafficLight lowest ={(Math.min.apply(null, priceArray)).toFixed(2)}  average={(priceArray.reduce((a, b) => a + b) / priceArray.length).toFixed(2)} highest={(Math.max.apply(null, priceArray)).toFixed(2)} day={"Today"} />
         <TrafficLight lowest ={"0.22"}  average={"0.35"} highest={"0.50"}  day={"Tomorrow"}/>
       </View>
     </SafeAreaView>
