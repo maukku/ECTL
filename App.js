@@ -1,10 +1,24 @@
-import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Dimensions, TouchableOpacity } from 'react-native';
-import Chart from './components/Chart';
-import { useEffect, useState } from 'react';
-import Header from './components/Header';
-import CircleIndicator from './components/CircleIndicator';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  setStatusBarNetworkActivityIndicatorVisible,
+  StatusBar,
+} from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
+import Chart from "./components/Chart";
+import { useEffect, useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
+import { parse } from "fast-xml-parser";
+import Header from "./components/Header";
+import CircleIndicator from "./components/CircleIndicator";
+import { SafeAreaView } from "react-native-safe-area-context";
+import TrafficLight from "./components/TrafficLight";
 
 const App = () => {
 	const [ currentDate, setCurrentDate ] = useState('');
@@ -94,26 +108,44 @@ const App = () => {
 				<Chart priceArray={priceArray} />
 			</View>
 
-			<Text style={styles.textStyle}>{currentDate}</Text>
-		</SafeAreaView>
-	);
+      <Text style={styles.textStyle}>{currentDate}</Text>
+
+      {/*   <Text style={styles.textStyle}>
+        {priceArray.map((price) => {
+          return <Text>{price} </Text>;
+        })}
+      </Text> */}
+      <View style={styles.TrafficLight}>
+        <TrafficLight  lowest ={"0.10"}  average={"0.15"} highest={"0.20"}   day={"Yesterday"} />
+        <TrafficLight lowest ={"0.12"}  average={"0.17"} highest={"0.22"} day={"Today"} />
+        <TrafficLight lowest ={"0.22"}  average={"0.35"} highest={"0.50"}  day={"Tomorrow"}/>
+      </View>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#ffffff'
-	},
-	chart: {
-		marginHorizontal: 10,
-		marginTop: 10
-	},
-	mainInfo: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		justifyContent: 'center',
-		height: 'auto',
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+  },
+  chart: {
+    marginHorizontal: 10,
+    marginTop: 10,
+  },
+  TrafficLight: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: 'space-around'
+
+  },
+
+  mainInfo: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "auto",
 
 		marginBottom: 0
 	}

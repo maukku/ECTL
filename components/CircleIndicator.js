@@ -20,7 +20,7 @@ const PriceIndicator = ({ value, altColor, color }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    marginRight: 10,
+    margin: 10,
   },
   circleshadow: {
     borderRadius: Dimensions.get("window").width / 2,

@@ -12,7 +12,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50,
+    marginBottom: 30,
     padding: 0,
   },
 });
