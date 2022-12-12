@@ -1,20 +1,10 @@
 import {
-  setStatusBarNetworkActivityIndicatorVisible,
-  StatusBar,
-} from "expo-status-bar";
-import {
   StyleSheet,
   Text,
   View,
-  Button,
-  Dimensions,
-  TouchableOpacity,
 } from "react-native";
 import Chart from "./components/Chart";
 import { useEffect, useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
-import axios from "axios";
-import { parse } from "fast-xml-parser";
 import Header from "./components/Header";
 import CircleIndicator from "./components/CircleIndicator";
 import { SafeAreaView } from "react-native-safe-area-context";
