@@ -49,7 +49,7 @@ const App = () => {
 
 		let spanwidth = max - min;
 		let lowerLimit = min + 0.3 * spanwidth;
-		setLowerLimit(lowerLimit); 
+		setLowerLimit(lowerLimit);
 
 		let higherLimit = min + 0.7 * spanwidth;
 		setHigherLimit(higherLimit);
@@ -77,10 +77,12 @@ const App = () => {
 			let currentDayPriceObjects = JSON.parse(replaceUneccessaryAttribute(jsonStringOfCurrentDayArray));
       		setLowerAndHigherLimit(currentDayPriceObjects);
 			setCurrentPriceValue(currentDayPriceObjects[today.getHours()].amount / 1000);
-			for (let i = 0; i < currentDayPriceObjects.length; i = i + 2) {
+			for (let i = 0; i < currentDayPriceObjects.length; i = i + 1) {
 				electricityPrices.push(currentDayPriceObjects[i].amount / 1000);
 			}
 			setPriceArray(electricityPrices);
+			// If you need to check data, use this
+			//console.log(electricityPrices, "\n");
 		});
 	};
 
